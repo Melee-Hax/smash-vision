@@ -1,8 +1,5 @@
 #include "ObjectTracker.h"
-<<<<<<< HEAD
 #include <list>
-=======
->>>>>>> a841d0afdc6bacf5d2ed2eec03b8e8f750421b3b
 
 /*
  ********FUNCTIONS ARE REMNANTS OF THE KEYPOINT MATCHING METHOD. MAY NEED TO FALL BACK ON THIS FOR SCALE INVARIANT MATCHING , SO LEAVING IN********
@@ -15,7 +12,6 @@ std::vector< cv::DMatch > match( cv::Mat descriptors_object , cv::Mat descriptor
 
 cv::Mat localize( cv::Mat img_object , std::vector<cv::KeyPoint> keypoints_object , cv::Mat img_scene , std::vector<cv::KeyPoint> keypoints_scene , std::vector< cv::DMatch > matches, bool debug = false);
 */
-<<<<<<< HEAD
 int errorFlag = 0;                  //error flag
 const int STARTFRAME = 250;         //what frame should we start on?
 float avgDistance;                  //should we find a match, how good is it?
@@ -28,24 +24,12 @@ int getCurrentTime(cv::Mat scene);
 void setUpNumbers(cv::Mat scene);
 bool compPoints (cv::Point i,cv::Point j);
 
-=======
-std::pair<double,cv::Point>* templateMatch(cv::Mat img, cv::Mat templ, bool relaxed = false);
-float getScale(cv::Mat);
-int readCountdown(cv::Mat scene);
-
-int errorFlag = 0;                  //error flag
-const int STARTFRAME = 0;         //what frame should we start on?
-float avgDistance;                  //should we find a match, how good is it?
-float THRESHOLD = .3;         //minimum acceptable template match accuracy
-
->>>>>>> a841d0afdc6bacf5d2ed2eec03b8e8f750421b3b
 float videoScale;
 float game_start_time;
 
 using namespace cv;
 using namespace std;
 
-<<<<<<< HEAD
 Mat Zero;
 Mat One;
 Mat Two;
@@ -59,16 +43,6 @@ Mat Nine;
 
 int main(int argc, char **argv)
 {
-    std::string filename = "/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/match.mp4";
-    
-    vision::ObjectTracker tracker(filename);            //init tracker, will give us img_scene values
-    
-    Mat img_object = imread("/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/pikachu.png",1);
-    Mat img_scene = tracker.getCurrentFrame();      //img_scene points to first frame
-    
-=======
-int main(int argc, char **argv)
-{
     std::string filename = "/Users/klaw/Documents/melee_hax/smash-vision/smashProj/Resources/match.mp4";
     
     vision::ObjectTracker tracker(filename);            //init tracker, will give us img_scene values
@@ -76,21 +50,13 @@ int main(int argc, char **argv)
     Mat img_object = imread("/Users/klaw/Documents/melee_hax/smash-vision/smashProj/Resources/pikachu.png",1);
     Mat img_scene = tracker.getCurrentFrame();      //img_scene points to first frame
     
-    //std::vector<cv::Mat> null;
-    //std::vector<cv::Mat> ch;
-    //split(img_object, ch);                              //set up mask to pass to detector
-    
->>>>>>> a841d0afdc6bacf5d2ed2eec03b8e8f750421b3b
     while(tracker.getCurrentFrameNumber() < STARTFRAME){//loop until you get to the frame you're interested in
         tracker.nextFrame();
     }
     
-<<<<<<< HEAD
     setUpNumbers(img_scene);//can't set up numbers before game screen loaded
     //HOW DO WE FIGURE OUT WHEN THE GAME SCREEN IS UP?
     
-=======
->>>>>>> a841d0afdc6bacf5d2ed2eec03b8e8f750421b3b
     namedWindow("Frame " + to_string(tracker.getCurrentFrameNumber()));
     
     pair<double,Point> matchPoint;
@@ -108,15 +74,8 @@ int main(int argc, char **argv)
             imshow( "Match: " + to_string((1-matchPoint.first)*100) + "% certainty", img_scene );
             waitKey(0);
             destroyWindow("Match: "+ to_string((1-matchPoint.first)*100) + "% certainty" );
-<<<<<<< HEAD
         }
         std::cout << "Next frame...(" << tracker.getCurrentFrameNumber() << ")..." << std::endl;
-=======
-            
-            //use tracker.getCurrentTime and reading the first frame that time != 08:00 to try and figure out what time the game starts at (can't use pre-game countdown because it is a total lie (nice job smash developers))
-        }
-        std::cout << "Next frame...(" << tracker.getCurrentFrameNumber() << ")" << std::endl;
->>>>>>> a841d0afdc6bacf5d2ed2eec03b8e8f750421b3b
         tracker.nextFrame();
         img_scene = tracker.getCurrentFrame();
         continue;
@@ -386,11 +345,7 @@ cv::Mat localize( cv::Mat img_object , std::vector<cv::KeyPoint> keypoints_objec
     return img_matches;
 }
 */
-<<<<<<< HEAD
 pair<double,Point>* templateMatch(cv::Mat img, cv::Mat templ, bool relaxed, float thresh)
-=======
-pair<double,Point>* templateMatch(cv::Mat img, cv::Mat templ, bool relaxed)
->>>>>>> a841d0afdc6bacf5d2ed2eec03b8e8f750421b3b
 {
     using namespace std;
     using namespace cv;
@@ -420,11 +375,7 @@ pair<double,Point>* templateMatch(cv::Mat img, cv::Mat templ, bool relaxed)
     
     minVal = abs(minVal); //am i losing important info here?
     
-<<<<<<< HEAD
     if(!relaxed && (minVal > thresh)){//returns 0,null if threshold violated
-=======
-    if(!relaxed && (minVal > THRESHOLD)){//returns 0,null if threshold violated
->>>>>>> a841d0afdc6bacf5d2ed2eec03b8e8f750421b3b
         return new pair<double,Point>;
     }
     
@@ -439,17 +390,12 @@ pair<double,Point>* templateMatch(cv::Mat img, cv::Mat templ, bool relaxed)
  This function is only necessary if different input videos have the game window at different sizes. I have no idea if this happens. If we find later that it does, we can use this function to figure out what to scale everything by (only relevant to reading the HUD, since characters are going to change scale regardless of window size)
 */
 
-<<<<<<< HEAD
 void getScale(cv::Mat scene)
-=======
-float getScale(cv::Mat scene)
->>>>>>> a841d0afdc6bacf5d2ed2eec03b8e8f750421b3b
 {
     Mat scaleR = imread("/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/scaleR.png",1),resizedScaleR;
     Size size = scaleR.size();
     double scaleMatch,bestScaleMatch = 100;
     float bestScale = 0;
-<<<<<<< HEAD
     pair<double,Point>* matchPoint;
     for(float i=.5 ; i <= 2 ; i = i+.05)
     {
@@ -458,19 +404,11 @@ float getScale(cv::Mat scene)
         scaleMatch = matchPoint->first;
         if((scaleMatch < bestScaleMatch) && scaleMatch > 0)
         {
-=======
-    for(float i=.5 ; i <= 2 ; i = i+.05)
-    {
-        resize(scaleR, resizedScaleR, cvSize(size.width * i, size.height * i));
-        scaleMatch = templateMatch(scene,resizedScaleR,true)->first;
-        if((scaleMatch < bestScaleMatch) && scaleMatch > 0){
->>>>>>> a841d0afdc6bacf5d2ed2eec03b8e8f750421b3b
             bestScaleMatch = scaleMatch;
             bestScale = i;
         }
     }
     
-<<<<<<< HEAD
     videoScale = bestScale;
 }
 
@@ -649,9 +587,6 @@ void setUpNumbers(cv::Mat scene)
     Nine = imread("/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/nine.png",1);
     size = Nine.size();
     resize(Nine,Nine,cvSize(size.width * videoScale, size.height * videoScale));
-=======
-    return bestScale;
->>>>>>> a841d0afdc6bacf5d2ed2eec03b8e8f750421b3b
 }
 
 
