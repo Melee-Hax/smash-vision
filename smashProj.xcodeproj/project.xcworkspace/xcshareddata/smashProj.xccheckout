@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>AA6F8EFF-3793-4C2A-8809-C5D4E84077C9</string>
+	<key>IDESourceControlProjectName</key>
+	<string>smashProj</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2A69DCD05EA60FCA151215A29F14C9416A406C55</key>
+		<string>https://github.com/MisterSquishy/smash-vision</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>smashProj.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2A69DCD05EA60FCA151215A29F14C9416A406C55</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/MisterSquishy/smash-vision</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2A69DCD05EA60FCA151215A29F14C9416A406C55</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2A69DCD05EA60FCA151215A29F14C9416A406C55</string>
+			<key>IDESourceControlWCCName</key>
+			<string>smash-vision</string>
+		</dict>
+	</array>
+</dict>
+</plist>

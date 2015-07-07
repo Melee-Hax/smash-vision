@@ -1,0 +1,419 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5E094BE91B35BEFD006A028D /* libopencv_highgui.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BE11B35BEFD006A028D /* libopencv_highgui.3.0.0.dylib */; };
+		5E094BEA1B35BEFD006A028D /* libopencv_objdetect.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BE21B35BEFD006A028D /* libopencv_objdetect.3.0.0.dylib */; };
+		5E094BEB1B35BEFD006A028D /* libopencv_shape.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BE31B35BEFD006A028D /* libopencv_shape.3.0.0.dylib */; };
+		5E094BEC1B35BEFD006A028D /* libopencv_flann.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BE41B35BEFD006A028D /* libopencv_flann.3.0.0.dylib */; };
+		5E094BED1B35BEFD006A028D /* libopencv_imgproc.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BE51B35BEFD006A028D /* libopencv_imgproc.3.0.0.dylib */; };
+		5E094BEE1B35BEFD006A028D /* libopencv_video.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BE61B35BEFD006A028D /* libopencv_video.3.0.0.dylib */; };
+		5E094BEF1B35BEFD006A028D /* libopencv_core.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BE71B35BEFD006A028D /* libopencv_core.3.0.0.dylib */; };
+		5E094BF21B35C133006A028D /* libopencv_ml.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BF11B35C133006A028D /* libopencv_ml.3.0.0.dylib */; };
+		5E094BF51B35C241006A028D /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BF41B35C241006A028D /* opencv2.framework */; };
+		5E094BF71B35C309006A028D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BF61B35C309006A028D /* Accelerate.framework */; };
+		5E094BFE1B35C355006A028D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BF81B35C355006A028D /* AVFoundation.framework */; };
+		5E094BFF1B35C355006A028D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BF91B35C355006A028D /* CoreGraphics.framework */; };
+		5E094C001B35C355006A028D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BFA1B35C355006A028D /* CoreMedia.framework */; };
+		5E094C011B35C355006A028D /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BFB1B35C355006A028D /* CoreVideo.framework */; };
+		5E094C021B35C355006A028D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BFC1B35C355006A028D /* Foundation.framework */; };
+		5E094C031B35C355006A028D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094BFD1B35C355006A028D /* QuartzCore.framework */; };
+		5E094C0F1B35FCE7006A028D /* libopencv_features2d.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094C0E1B35FCE7006A028D /* libopencv_features2d.3.0.0.dylib */; };
+		5E094C111B35FD15006A028D /* libopencv_stitching.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094C101B35FD15006A028D /* libopencv_stitching.3.0.0.dylib */; };
+		5E094C131B360F8D006A028D /* libopencv_xfeatures2d.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E094C121B360F8D006A028D /* libopencv_xfeatures2d.3.0.0.dylib */; };
+		5E7ED2DC1B3BAED900AE09D3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5E7ED2DB1B3BAED900AE09D3 /* main.cpp */; };
+		5EDE53261B3A51C8003BD35A /* TrackingParticleFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE53241B3A51C8003BD35A /* TrackingParticleFilter.cpp */; };
+		5EDE532E1B3A5204003BD35A /* HsvHistogram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE53271B3A5204003BD35A /* HsvHistogram.cpp */; };
+		5EDE532F1B3A5204003BD35A /* LineHoughTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE53281B3A5204003BD35A /* LineHoughTransform.cpp */; };
+		5EDE53301B3A5204003BD35A /* ObjectTracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5EDE532D1B3A5204003BD35A /* ObjectTracker.cpp */; };
+		5EDE53321B3A574D003BD35A /* libopencv_videoio.3.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDE53311B3A574D003BD35A /* libopencv_videoio.3.0.0.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5E094BD41B35BE56006A028D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		5E094BD61B35BE57006A028D /* smashProj */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = smashProj; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E094BE11B35BEFD006A028D /* libopencv_highgui.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_highgui.3.0.0.dylib; sourceTree = "<group>"; };
+		5E094BE21B35BEFD006A028D /* libopencv_objdetect.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_objdetect.3.0.0.dylib; sourceTree = "<group>"; };
+		5E094BE31B35BEFD006A028D /* libopencv_shape.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_shape.3.0.0.dylib; sourceTree = "<group>"; };
+		5E094BE41B35BEFD006A028D /* libopencv_flann.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_flann.3.0.0.dylib; sourceTree = "<group>"; };
+		5E094BE51B35BEFD006A028D /* libopencv_imgproc.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_imgproc.3.0.0.dylib; sourceTree = "<group>"; };
+		5E094BE61B35BEFD006A028D /* libopencv_video.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_video.3.0.0.dylib; sourceTree = "<group>"; };
+		5E094BE71B35BEFD006A028D /* libopencv_core.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_core.3.0.0.dylib; sourceTree = "<group>"; };
+		5E094BF11B35C133006A028D /* libopencv_ml.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_ml.3.0.0.dylib; sourceTree = "<group>"; };
+		5E094BF41B35C241006A028D /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		5E094BF61B35C309006A028D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		5E094BF81B35C355006A028D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		5E094BF91B35C355006A028D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5E094BFA1B35C355006A028D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		5E094BFB1B35C355006A028D /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		5E094BFC1B35C355006A028D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5E094BFD1B35C355006A028D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5E094C0E1B35FCE7006A028D /* libopencv_features2d.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_features2d.3.0.0.dylib; sourceTree = "<group>"; };
+		5E094C101B35FD15006A028D /* libopencv_stitching.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_stitching.3.0.0.dylib; sourceTree = "<group>"; };
+		5E094C121B360F8D006A028D /* libopencv_xfeatures2d.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_xfeatures2d.3.0.0.dylib; sourceTree = "<group>"; };
+		5E0DA3361B49C71D009A26BF /* fox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fox.png; path = /Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/fox.png; sourceTree = "<absolute>"; };
+		5E0DA3371B49C71D009A26BF /* match.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = match.mp4; sourceTree = "<group>"; };
+		5E0DA3381B49C71D009A26BF /* pikachu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pikachu.png; sourceTree = "<group>"; };
+		5E0DA3391B49C71D009A26BF /* scaleR.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scaleR.png; sourceTree = "<group>"; };
+		5E10A5E11B44C4190010F5EA /* smashproject 19.25.56.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = "smashproject 19.25.56.rtf"; path = "smashProj.xcodeproj/smashproject 19.25.56.rtf"; sourceTree = "<group>"; };
+		5E10A5E21B44C4190010F5EA /* datamodeloutline.xlsx */ = {isa = PBXFileReference; lastKnownFileType = file; name = datamodeloutline.xlsx; path = smashProj.xcodeproj/datamodeloutline.xlsx; sourceTree = "<group>"; };
+		5E7ED2DB1B3BAED900AE09D3 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5EDE53241B3A51C8003BD35A /* TrackingParticleFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TrackingParticleFilter.cpp; sourceTree = "<group>"; };
+		5EDE53251B3A51C8003BD35A /* TrackingParticleFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackingParticleFilter.h; sourceTree = "<group>"; };
+		5EDE53271B3A5204003BD35A /* HsvHistogram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HsvHistogram.cpp; sourceTree = "<group>"; };
+		5EDE53281B3A5204003BD35A /* LineHoughTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LineHoughTransform.cpp; sourceTree = "<group>"; };
+		5EDE53291B3A5204003BD35A /* ObjectTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTracker.h; sourceTree = "<group>"; };
+		5EDE532A1B3A5204003BD35A /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		5EDE532B1B3A5204003BD35A /* HsvHistogram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HsvHistogram.h; sourceTree = "<group>"; };
+		5EDE532C1B3A5204003BD35A /* LineHoughTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineHoughTransform.h; sourceTree = "<group>"; };
+		5EDE532D1B3A5204003BD35A /* ObjectTracker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectTracker.cpp; sourceTree = "<group>"; };
+		5EDE53311B3A574D003BD35A /* libopencv_videoio.3.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_videoio.3.0.0.dylib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5E094BD31B35BE56006A028D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EDE53321B3A574D003BD35A /* libopencv_videoio.3.0.0.dylib in Frameworks */,
+				5E094BFE1B35C355006A028D /* AVFoundation.framework in Frameworks */,
+				5E094BFF1B35C355006A028D /* CoreGraphics.framework in Frameworks */,
+				5E094C001B35C355006A028D /* CoreMedia.framework in Frameworks */,
+				5E094C011B35C355006A028D /* CoreVideo.framework in Frameworks */,
+				5E094C021B35C355006A028D /* Foundation.framework in Frameworks */,
+				5E094C031B35C355006A028D /* QuartzCore.framework in Frameworks */,
+				5E094C111B35FD15006A028D /* libopencv_stitching.3.0.0.dylib in Frameworks */,
+				5E094BF71B35C309006A028D /* Accelerate.framework in Frameworks */,
+				5E094BEE1B35BEFD006A028D /* libopencv_video.3.0.0.dylib in Frameworks */,
+				5E094BEB1B35BEFD006A028D /* libopencv_shape.3.0.0.dylib in Frameworks */,
+				5E094BE91B35BEFD006A028D /* libopencv_highgui.3.0.0.dylib in Frameworks */,
+				5E094BF21B35C133006A028D /* libopencv_ml.3.0.0.dylib in Frameworks */,
+				5E094C131B360F8D006A028D /* libopencv_xfeatures2d.3.0.0.dylib in Frameworks */,
+				5E094BEF1B35BEFD006A028D /* libopencv_core.3.0.0.dylib in Frameworks */,
+				5E094BED1B35BEFD006A028D /* libopencv_imgproc.3.0.0.dylib in Frameworks */,
+				5E094C0F1B35FCE7006A028D /* libopencv_features2d.3.0.0.dylib in Frameworks */,
+				5E094BEC1B35BEFD006A028D /* libopencv_flann.3.0.0.dylib in Frameworks */,
+				5E094BEA1B35BEFD006A028D /* libopencv_objdetect.3.0.0.dylib in Frameworks */,
+				5E094BF51B35C241006A028D /* opencv2.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5E094BCD1B35BE56006A028D = {
+			isa = PBXGroup;
+			children = (
+				5E10A5E11B44C4190010F5EA /* smashproject 19.25.56.rtf */,
+				5E10A5E21B44C4190010F5EA /* datamodeloutline.xlsx */,
+				5E4CFE771B49C26900DB29D7 /* Resources */,
+				5E094BF01B35BF53006A028D /* OpenCV libraries */,
+				5E094BD81B35BE57006A028D /* smashProj */,
+				5E094BD71B35BE57006A028D /* Products */,
+				5E094BF31B35C22B006A028D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5E094BD71B35BE57006A028D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5E094BD61B35BE57006A028D /* smashProj */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5E094BD81B35BE57006A028D /* smashProj */ = {
+			isa = PBXGroup;
+			children = (
+				5E7ED2DB1B3BAED900AE09D3 /* main.cpp */,
+				5EDE53291B3A5204003BD35A /* ObjectTracker.h */,
+				5EDE532D1B3A5204003BD35A /* ObjectTracker.cpp */,
+				5EDE532A1B3A5204003BD35A /* Common.h */,
+				5EDE532B1B3A5204003BD35A /* HsvHistogram.h */,
+				5EDE53271B3A5204003BD35A /* HsvHistogram.cpp */,
+				5EDE532C1B3A5204003BD35A /* LineHoughTransform.h */,
+				5EDE53281B3A5204003BD35A /* LineHoughTransform.cpp */,
+				5EDE53251B3A51C8003BD35A /* TrackingParticleFilter.h */,
+				5EDE53241B3A51C8003BD35A /* TrackingParticleFilter.cpp */,
+			);
+			path = smashProj;
+			sourceTree = "<group>";
+		};
+		5E094BF01B35BF53006A028D /* OpenCV libraries */ = {
+			isa = PBXGroup;
+			children = (
+				5EDE53311B3A574D003BD35A /* libopencv_videoio.3.0.0.dylib */,
+				5E094C121B360F8D006A028D /* libopencv_xfeatures2d.3.0.0.dylib */,
+				5E094C101B35FD15006A028D /* libopencv_stitching.3.0.0.dylib */,
+				5E094C0E1B35FCE7006A028D /* libopencv_features2d.3.0.0.dylib */,
+				5E094BF11B35C133006A028D /* libopencv_ml.3.0.0.dylib */,
+				5E094BE11B35BEFD006A028D /* libopencv_highgui.3.0.0.dylib */,
+				5E094BE21B35BEFD006A028D /* libopencv_objdetect.3.0.0.dylib */,
+				5E094BE31B35BEFD006A028D /* libopencv_shape.3.0.0.dylib */,
+				5E094BE41B35BEFD006A028D /* libopencv_flann.3.0.0.dylib */,
+				5E094BE51B35BEFD006A028D /* libopencv_imgproc.3.0.0.dylib */,
+				5E094BE61B35BEFD006A028D /* libopencv_video.3.0.0.dylib */,
+				5E094BE71B35BEFD006A028D /* libopencv_core.3.0.0.dylib */,
+			);
+			name = "OpenCV libraries";
+			sourceTree = "<group>";
+		};
+		5E094BF31B35C22B006A028D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5E094BF81B35C355006A028D /* AVFoundation.framework */,
+				5E094BF91B35C355006A028D /* CoreGraphics.framework */,
+				5E094BFA1B35C355006A028D /* CoreMedia.framework */,
+				5E094BFB1B35C355006A028D /* CoreVideo.framework */,
+				5E094BFC1B35C355006A028D /* Foundation.framework */,
+				5E094BFD1B35C355006A028D /* QuartzCore.framework */,
+				5E094BF61B35C309006A028D /* Accelerate.framework */,
+				5E094BF41B35C241006A028D /* opencv2.framework */,
+			);
+			name = Frameworks;
+			path = smashProj.xcodeproj;
+			sourceTree = "<group>";
+		};
+		5E4CFE771B49C26900DB29D7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5E0DA3361B49C71D009A26BF /* fox.png */,
+				5E0DA3371B49C71D009A26BF /* match.mp4 */,
+				5E0DA3381B49C71D009A26BF /* pikachu.png */,
+				5E0DA3391B49C71D009A26BF /* scaleR.png */,
+			);
+			name = Resources;
+			path = smashProj/Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5E094BD51B35BE56006A028D /* smashProj */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E094BDD1B35BE57006A028D /* Build configuration list for PBXNativeTarget "smashProj" */;
+			buildPhases = (
+				5E094BD21B35BE56006A028D /* Sources */,
+				5E094BD31B35BE56006A028D /* Frameworks */,
+				5E094BD41B35BE56006A028D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = smashProj;
+			productName = smashProj;
+			productReference = 5E094BD61B35BE57006A028D /* smashProj */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5E094BCE1B35BE56006A028D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Peter Davids";
+				TargetAttributes = {
+					5E094BD51B35BE56006A028D = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+				};
+			};
+			buildConfigurationList = 5E094BD11B35BE56006A028D /* Build configuration list for PBXProject "smashProj" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 5E094BCD1B35BE56006A028D;
+			productRefGroup = 5E094BD71B35BE57006A028D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5E094BD51B35BE56006A028D /* smashProj */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5E094BD21B35BE56006A028D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EDE532E1B3A5204003BD35A /* HsvHistogram.cpp in Sources */,
+				5EDE53301B3A5204003BD35A /* ObjectTracker.cpp in Sources */,
+				5EDE53261B3A51C8003BD35A /* TrackingParticleFilter.cpp in Sources */,
+				5E7ED2DC1B3BAED900AE09D3 /* main.cpp in Sources */,
+				5EDE532F1B3A5204003BD35A /* LineHoughTransform.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		5E094BDB1B35BE57006A028D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		5E094BDC1B35BE57006A028D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		5E094BDE1B35BE57006A028D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/smashProj.xcodeproj",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		5E094BDF1B35BE57006A028D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/smashProj.xcodeproj",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5E094BD11B35BE56006A028D /* Build configuration list for PBXProject "smashProj" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E094BDB1B35BE57006A028D /* Debug */,
+				5E094BDC1B35BE57006A028D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E094BDD1B35BE57006A028D /* Build configuration list for PBXNativeTarget "smashProj" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E094BDE1B35BE57006A028D /* Debug */,
+				5E094BDF1B35BE57006A028D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5E094BCE1B35BE56006A028D /* Project object */;
+}
