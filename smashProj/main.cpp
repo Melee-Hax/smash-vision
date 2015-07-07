@@ -1,6 +1,6 @@
 #include "ObjectTracker.h"
 #include <list>
-
+#include <boost/filesystem.hpp>
 /*
  ********FUNCTIONS ARE REMNANTS OF THE KEYPOINT MATCHING METHOD. MAY NEED TO FALL BACK ON THIS FOR SCALE INVARIANT MATCHING , SO LEAVING IN********
  
@@ -16,6 +16,7 @@ int errorFlag = 0;                  //error flag
 const int STARTFRAME = 250;         //what frame should we start on?
 float avgDistance;                  //should we find a match, how good is it?
 float THRESHOLD = .3;         //minimum acceptable template match accuracy
+auto cwd = boost::filesystem::current_path();
 
 std::pair<double,cv::Point>* templateMatch(cv::Mat img, cv::Mat templ, bool relaxed = false, float thresh = THRESHOLD);
 void getScale(cv::Mat);
@@ -30,6 +31,7 @@ float game_start_time;
 using namespace cv;
 using namespace std;
 
+
 Mat Zero;
 Mat One;
 Mat Two;
@@ -43,18 +45,18 @@ Mat Nine;
 
 int main(int argc, char **argv)
 {
-    std::string filename = "/Users/klaw/Documents/melee_hax/smash-vision/smashProj/Resources/match.mp4";
+    std::string filename = cwd.string() + "/Resources/match.mp4";
     
     vision::ObjectTracker tracker(filename);            //init tracker, will give us img_scene values
     
-    Mat img_object = imread("/Users/klaw/Documents/melee_hax/smash-vision/smashProj/Resources/pikachu.png",1);
+    Mat img_object = imread(cwd.string() + "/Resources/pikachu.png",1);
     Mat img_scene = tracker.getCurrentFrame();      //img_scene points to first frame
     
     while(tracker.getCurrentFrameNumber() < STARTFRAME){//loop until you get to the frame you're interested in
         tracker.nextFrame();
     }
     
-    setUpNumbers(img_scene);//can't set up numbers before game screen loaded
+    //setUpNumbers(img_scene);//can't set up numbers before game screen loaded
     //HOW DO WE FIGURE OUT WHEN THE GAME SCREEN IS UP?
     
     namedWindow("Frame " + to_string(tracker.getCurrentFrameNumber()));
@@ -392,7 +394,7 @@ pair<double,Point>* templateMatch(cv::Mat img, cv::Mat templ, bool relaxed, floa
 
 void getScale(cv::Mat scene)
 {
-    Mat scaleR = imread("/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/scaleR.png",1),resizedScaleR;
+    Mat scaleR = imread(cwd.string() + "Resources/scaleR.png",1),resizedScaleR;
     Size size = scaleR.size();
     double scaleMatch,bestScaleMatch = 100;
     float bestScale = 0;
@@ -548,43 +550,43 @@ void setUpNumbers(cv::Mat scene)
     
     cout << videoScale << endl;
     
-    Zero = imread("/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/zero.png",1);
+    Zero = imread(cwd.string() + "Resources/zero.png",1);
     Size size = Zero.size();
     resize(Zero,Zero,cvSize(size.width * videoScale, size.height * videoScale));
     
-    One = imread("/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/one.png",1);
+    One = imread(cwd.string() + "Resources/one.png",1);
     size = One.size();
     resize(One,One,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Two = imread("/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/two.png",1);
+    Two = imread(cwd.string() + "Resources/two.png",1);
     size = Two.size();
     resize(Two,Two,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Three = imread("/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/three.png",1);
+    Three = imread(cwd.string() + "Resources/three.png",1);
     size = Three.size();
     resize(Three,Three,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Four = imread("/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/four.png",1);
+    Four = imread(cwd.string() + "Resources/four.png",1);
     size = Four.size();
     resize(Four,Four,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Five = imread("/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/five.png",1);
+    Five = imread(cwd.string() + "Resources/five.png",1);
     size = Five.size();
     resize(Five,Five,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Six = imread("/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/six.png",1);
+    Six = imread(cwd.string() + "Resources/six.png",1);
     size = Six.size();
     resize(Six,Six,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Seven = imread("/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/seven.png",1);
+    Seven = imread(cwd.string() + "Resources/seven.png",1);
     size = Seven.size();
     resize(Seven,Seven,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Eight = imread("/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/eight.png",1);
+    Eight = imread(cwd.string() + "Resources/eight.png",1);
     size = Eight.size();
     resize(Eight,Eight,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Nine = imread("/Users/peterdavids/Desktop/Projects/smashProj/smashProj/Resources/nine.png",1);
+    Nine = imread(cwd.string() + "Resources/nine.png",1);
     size = Nine.size();
     resize(Nine,Nine,cvSize(size.width * videoScale, size.height * videoScale));
 }
