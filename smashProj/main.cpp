@@ -1,6 +1,7 @@
 #include "ObjectTracker.h"
 #include <list>
 #include <boost/filesystem.hpp>
+#include <tesseract/baseapi.h>
 /*
  ********FUNCTIONS ARE REMNANTS OF THE KEYPOINT MATCHING METHOD. MAY NEED TO FALL BACK ON THIS FOR SCALE INVARIANT MATCHING , SO LEAVING IN********
  
@@ -12,13 +13,17 @@ std::vector< cv::DMatch > match( cv::Mat descriptors_object , cv::Mat descriptor
 
 cv::Mat localize( cv::Mat img_object , std::vector<cv::KeyPoint> keypoints_object , cv::Mat img_scene , std::vector<cv::KeyPoint> keypoints_scene , std::vector< cv::DMatch > matches, bool debug = false);
 */
+using namespace cv;
+using namespace std;
+
+
 int errorFlag = 0;                  //error flag
-const int STARTFRAME = 250;         //what frame should we start on?
+const int STARTFRAME = 500;         //what frame should we start on?
 float avgDistance;                  //should we find a match, how good is it?
 float THRESHOLD = .3;         //minimum acceptable template match accuracy
 auto cwd = boost::filesystem::current_path();
 
-std::pair<double,cv::Point>* templateMatch(cv::Mat img, cv::Mat templ, bool relaxed = false, float thresh = THRESHOLD);
+pair<double,cv::Point>* templateMatch(cv::Mat img, cv::Mat templ, bool relaxed = false, float thresh = THRESHOLD);
 void getScale(cv::Mat);
 int readCountdown(cv::Mat scene);
 int getCurrentTime(cv::Mat scene);
@@ -27,10 +32,6 @@ bool compPoints (cv::Point i,cv::Point j);
 
 float videoScale;
 float game_start_time;
-
-using namespace cv;
-using namespace std;
-
 
 Mat Zero;
 Mat One;
@@ -45,18 +46,18 @@ Mat Nine;
 
 int main(int argc, char **argv)
 {
-    std::string filename = cwd.string() + "/Resources/match.mp4";
+    string filename = cwd.string() + "/Resources/match.mp4";
     
     vision::ObjectTracker tracker(filename);            //init tracker, will give us img_scene values
     
-    Mat img_object = imread(cwd.string() + "/Resources/pikachu.png",1);
+    Mat img_object = imread(cwd.string() + "/Resources/eight.png",1);
     Mat img_scene = tracker.getCurrentFrame();      //img_scene points to first frame
     
     while(tracker.getCurrentFrameNumber() < STARTFRAME){//loop until you get to the frame you're interested in
         tracker.nextFrame();
     }
     
-    //setUpNumbers(img_scene);//can't set up numbers before game screen loaded
+    setUpNumbers(img_scene);//can't set up numbers before game screen loaded
     //HOW DO WE FIGURE OUT WHEN THE GAME SCREEN IS UP?
     
     namedWindow("Frame " + to_string(tracker.getCurrentFrameNumber()));
@@ -65,19 +66,39 @@ int main(int argc, char **argv)
     
     while(true) //iterate over frames
     {
-        imshow("Frame " + to_string(tracker.getCurrentFrameNumber()), img_scene );
+		//Tesseract testing
+		Rect roi = Rect(0, 0, img_scene.cols, img_scene.rows/3);
+		Mat img_scene_roi = img_scene(roi);
+		Mat gray;
+		cvtColor(img_scene_roi, gray, CV_BGR2GRAY);
+
+		tesseract::TessBaseAPI tess;
+		tess.Init(NULL, "eng", tesseract::OEM_DEFAULT);
+		tess.SetPageSegMode(tesseract::PSM_SINGLE_BLOCK);
+		tess.SetVariable("tessedit_char_whitelist", "0123456789");
+		tess.SetImage((uchar*)gray.data, gray.cols, gray.rows, 1, gray.cols);
+
+
+        imshow("Frame " + to_string(tracker.getCurrentFrameNumber()), img_scene_roi );
         destroyWindow("Frame " + to_string(tracker.getCurrentFrameNumber()-1));
         matchPoint = *templateMatch(img_scene, img_object);
+
+
+		char* text = tess.GetUTF8Text();
+		cout << text << endl;
+
+		/* float time = getCurrentTime(img_scene); */
+		/* cout << time << endl; */
         if(matchPoint.first > 0){
             //display result
             rectangle(img_scene, matchPoint.second, Point( matchPoint.second.x + img_object.cols , matchPoint.second.y + img_object.rows ), Scalar::all(255), 2, 8, 0 );
             
             namedWindow("Match: " + to_string((1-matchPoint.first)*100) + "% certainty"); //this whole % certainty thing is probably BS, just want to display match accuracy in percent form to make it human-readable
             imshow( "Match: " + to_string((1-matchPoint.first)*100) + "% certainty", img_scene );
-            waitKey(0);
+            /* waitKey(0); */
             destroyWindow("Match: "+ to_string((1-matchPoint.first)*100) + "% certainty" );
         }
-        std::cout << "Next frame...(" << tracker.getCurrentFrameNumber() << ")..." << std::endl;
+        cout << "Next frame...(" << tracker.getCurrentFrameNumber() << ")..." << endl;
         tracker.nextFrame();
         img_scene = tracker.getCurrentFrame();
         continue;
@@ -366,7 +387,7 @@ pair<double,Point>* templateMatch(cv::Mat img, cv::Mat templ, bool relaxed, floa
     
     /// Do the Matching and Normalize
     matchTemplate( img, templ, result, match_method );
-    //normalize( result, result, 0, 1, NORM_MINMAX, -1, Mat() );
+    /* normalize( result, result, 0, 1, NORM_MINMAX, -1, Mat() ); */
     
     /// Localizing the best match with minMaxLoc
     double minVal = 0; Point minLoc = *new Point;
@@ -394,7 +415,10 @@ pair<double,Point>* templateMatch(cv::Mat img, cv::Mat templ, bool relaxed, floa
 
 void getScale(cv::Mat scene)
 {
-    Mat scaleR = imread(cwd.string() + "Resources/scaleR.png",1),resizedScaleR;
+    Mat scaleR = imread(cwd.string() + "/Resources/scaleR.png",1), resizedScaleR;
+	if (scaleR.cols == 0) {
+		cout << "Error reading" << endl;
+	}
     Size size = scaleR.size();
     double scaleMatch,bestScaleMatch = 100;
     float bestScale = 0;
@@ -468,10 +492,11 @@ int getCurrentTime(cv::Mat scene) //good lord this is awful
         Size size = num.size();
         if(littleNums<2)
         {
-            matchPoint = templateMatch(garb_scene, num, false, .05);
+            matchPoint = templateMatch(garb_scene, num, false, .22);
             if(matchPoint->first > 0){
-                rectangle(garb_scene, matchPoint->second, Point( matchPoint->second.x + num.cols , matchPoint->second.y + num.rows ), Scalar::all(0), CV_FILLED, 8, 0 );
-                //imshow("little " + to_string(i) + " " + to_string(matchPoint->first),garb_scene);
+				cout << "Matched " << i << endl;
+                rectangle(garb_scene, matchPoint->second, Point( matchPoint->second.x + num.cols , matchPoint->second.y + num.rows ), Scalar(255, 0, 0), 2, 8, 0 );
+                imshow("little " + to_string(i) + " " + to_string(matchPoint->first),garb_scene);
                 //waitKey(0);
                 numbers.push_back(*new Point(i,matchPoint->second.x));
                 if(numbers.size() == 6){
@@ -484,14 +509,15 @@ int getCurrentTime(cv::Mat scene) //good lord this is awful
             }
         }
         resize(num, num, cvSize(size.height * 1.3333, size.width * 1.3333));
-        matchPoint = templateMatch(garb_scene, num, false, .07);
+        matchPoint = templateMatch(garb_scene, num, false, .45);
         if(matchPoint->first > 0){
             if(yLoc > 0 && (abs(yLoc - matchPoint->second.y)>50)){
                 continue;
             }
-            rectangle(garb_scene, matchPoint->second, Point( matchPoint->second.x + num.cols , matchPoint->second.y + num.rows ), Scalar::all(0), CV_FILLED, 8, 0 );
+			cout << "Matched large " << i << endl;
+            rectangle(garb_scene, matchPoint->second, Point( matchPoint->second.x + num.cols , matchPoint->second.y + num.rows ), Scalar(255, 255, 0), 2, 8, 0 );
             //imshow("big " + to_string(i) + " " + to_string(matchPoint->first),garb_scene);
-            //waitKey(0);
+            /* waitKey(0); */
             if(yLoc == 0){
                 yLoc = matchPoint->second.y;
             }
@@ -505,39 +531,39 @@ int getCurrentTime(cv::Mat scene) //good lord this is awful
         }
     }
     
-    numbers.sort(compPoints);
+    /* numbers.sort(compPoints); */
     
-    list<Point>::iterator iter;
+    /* list<Point>::iterator iter; */
     int milliseconds = 0;
-    int position = 0;
-    for (iter = numbers.begin() ; iter != numbers.end(); ++iter){
-        switch(position){
-            case 0:
-                milliseconds += iter->x * 600000;
-                position++;
-                break;
-            case 1:
-                milliseconds += iter->x * 60000;
-                position++;
-                break;
-            case 2:
-                milliseconds += iter->x * 10000;
-                position++;
-                break;
-            case 3:
-                milliseconds += iter->x * 1000;
-                position++;
-                break;
-            case 4:
-                milliseconds += iter->x * 100;
-                position++;
-                break;
-            case 5:
-                milliseconds += iter->x * 10;
-                position++;
-                break;
-        }
-    }
+    /* int position = 0; */
+    /* for (iter = numbers.begin() ; iter != numbers.end(); ++iter){ */
+    /*     switch(position){ */
+    /*         case 0: */
+    /*             milliseconds += iter->x * 600000; */
+    /*             position++; */
+    /*             break; */
+    /*         case 1: */
+    /*             milliseconds += iter->x * 60000; */
+    /*             position++; */
+    /*             break; */
+    /*         case 2: */
+    /*             milliseconds += iter->x * 10000; */
+    /*             position++; */
+    /*             break; */
+    /*         case 3: */
+    /*             milliseconds += iter->x * 1000; */
+    /*             position++; */
+    /*             break; */
+    /*         case 4: */
+    /*             milliseconds += iter->x * 100; */
+    /*             position++; */
+    /*             break; */
+    /*         case 5: */
+    /*             milliseconds += iter->x * 10; */
+    /*             position++; */
+    /*             break; */
+    /*     } */
+    /* } */
 
     return 480000-milliseconds;
 }
@@ -550,43 +576,43 @@ void setUpNumbers(cv::Mat scene)
     
     cout << videoScale << endl;
     
-    Zero = imread(cwd.string() + "Resources/zero.png",1);
+    Zero = imread(cwd.string() + "/Resources/zero.png",1);
     Size size = Zero.size();
     resize(Zero,Zero,cvSize(size.width * videoScale, size.height * videoScale));
     
-    One = imread(cwd.string() + "Resources/one.png",1);
+    One = imread(cwd.string() + "/Resources/one.png",1);
     size = One.size();
     resize(One,One,cvSize(size.width * videoScale, size.height * videoScale));
-    
-    Two = imread(cwd.string() + "Resources/two.png",1);
+
+    Two = imread(cwd.string() + "/Resources/two.png",1);
     size = Two.size();
     resize(Two,Two,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Three = imread(cwd.string() + "Resources/three.png",1);
+    Three = imread(cwd.string() + "/Resources/three.png",1);
     size = Three.size();
     resize(Three,Three,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Four = imread(cwd.string() + "Resources/four.png",1);
+    Four = imread(cwd.string() + "/Resources/four.png",1);
     size = Four.size();
     resize(Four,Four,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Five = imread(cwd.string() + "Resources/five.png",1);
+    Five = imread(cwd.string() + "/Resources/five.png",1);
     size = Five.size();
     resize(Five,Five,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Six = imread(cwd.string() + "Resources/six.png",1);
+    Six = imread(cwd.string() + "/Resources/six.png",1);
     size = Six.size();
     resize(Six,Six,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Seven = imread(cwd.string() + "Resources/seven.png",1);
+    Seven = imread(cwd.string() + "/Resources/seven.png",1);
     size = Seven.size();
     resize(Seven,Seven,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Eight = imread(cwd.string() + "Resources/eight.png",1);
+    Eight = imread(cwd.string() + "/Resources/eight.png",1);
     size = Eight.size();
     resize(Eight,Eight,cvSize(size.width * videoScale, size.height * videoScale));
     
-    Nine = imread(cwd.string() + "Resources/nine.png",1);
+    Nine = imread(cwd.string() + "/Resources/nine.png",1);
     size = Nine.size();
     resize(Nine,Nine,cvSize(size.width * videoScale, size.height * videoScale));
 }

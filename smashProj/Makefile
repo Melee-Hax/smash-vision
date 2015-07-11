@@ -2,7 +2,7 @@ PLATFORM = $(shell uname)
 
 CFLAGS=-L/usr/local/lib \-I/usr/local/include
 ## Mac OS X
-LDFLAGS+= -lopencv_core -lopencv_calib3d -lopencv_features2d -lopencv_flann -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc -lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_shape -lopencv_stitching -lopencv_superres -lopencv_ts -lopencv_video -lopencv_videoio -lopencv_videostab -lboost_filesystem -lboost_system
+LDFLAGS+= -lopencv_core -lopencv_calib3d -lopencv_features2d -lopencv_flann -lopencv_highgui -lopencv_imgcodecs -lopencv_imgproc -lopencv_ml -lopencv_objdetect -lopencv_photo -lopencv_shape -lopencv_stitching -lopencv_superres -lopencv_ts -lopencv_video -lopencv_videoio -lopencv_videostab -lboost_filesystem -lboost_system -ltesseract -llept -pthread
 
 CC = g++ -O3 -w
 
