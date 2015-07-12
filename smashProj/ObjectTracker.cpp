@@ -57,11 +57,11 @@ namespace vision
         
         currentFrameNumber_++;
         
-        if(tracker_)
-        {
-            tracker_->run(currentFrameHsv_);
+        //if(tracker_)
+        //{
+        //    tracker_->run(currentFrameHsv_);
             
-            tracker_->drawParticles(currentFrame_, false);
-        }
+        //    tracker_->drawParticles(currentFrame_, false);
+        //}
     }
 }

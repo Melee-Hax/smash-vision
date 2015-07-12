@@ -1,6 +1,7 @@
 #include "ObjectTracker.h"
 #include <list>
 #include <boost/filesystem.hpp>
+#include <boost/foreach.hpp>
 #include <tesseract/baseapi.h>
 /*
  ********FUNCTIONS ARE REMNANTS OF THE KEYPOINT MATCHING METHOD. MAY NEED TO FALL BACK ON THIS FOR SCALE INVARIANT MATCHING , SO LEAVING IN********
@@ -18,7 +19,7 @@ using namespace std;
 
 
 int errorFlag = 0;                  //error flag
-const int STARTFRAME = 500;         //what frame should we start on?
+const int STARTFRAME = 160;         //what frame should we start on?
 float avgDistance;                  //should we find a match, how good is it?
 float THRESHOLD = .3;         //minimum acceptable template match accuracy
 auto cwd = boost::filesystem::current_path();
@@ -29,6 +30,7 @@ int readCountdown(cv::Mat scene);
 int getCurrentTime(cv::Mat scene);
 void setUpNumbers(cv::Mat scene);
 bool compPoints (cv::Point i,cv::Point j);
+pair<string, string> getMatchup(Mat scene);
 
 float videoScale;
 float game_start_time;
@@ -66,6 +68,7 @@ int main(int argc, char **argv)
     
     while(true) //iterate over frames
     {
+        /*
 		//Tesseract testing
 		Rect roi = Rect(0, 0, img_scene.cols, img_scene.rows/3);
 		Mat img_scene_roi = img_scene(roi);
@@ -82,13 +85,19 @@ int main(int argc, char **argv)
         imshow("Frame " + to_string(tracker.getCurrentFrameNumber()), img_scene_roi );
         destroyWindow("Frame " + to_string(tracker.getCurrentFrameNumber()-1));
         matchPoint = *templateMatch(img_scene, img_object);
-
+         
 
 		char* text = tess.GetUTF8Text();
 		cout << text << endl;
-
+         */
 		/* float time = getCurrentTime(img_scene); */
 		/* cout << time << endl; */
+        pair<string,string> matchup = getMatchup(img_scene);
+        if(matchup.second != ""){
+            cout << matchup.first << " vs. " << matchup.second;
+            waitKey(0);
+        }
+        
         if(matchPoint.first > 0){
             //display result
             rectangle(img_scene, matchPoint.second, Point( matchPoint.second.x + img_object.cols , matchPoint.second.y + img_object.rows ), Scalar::all(255), 2, 8, 0 );
@@ -574,7 +583,7 @@ void setUpNumbers(cv::Mat scene)
 {
     getScale(scene);
     
-    cout << videoScale << endl;
+    cout << videoScale << endl; //why is this sometimes broken
     
     Zero = imread(cwd.string() + "/Resources/zero.png",1);
     Size size = Zero.size();
@@ -617,6 +626,48 @@ void setUpNumbers(cv::Mat scene)
     resize(Nine,Nine,cvSize(size.width * videoScale, size.height * videoScale));
 }
 
+//fuck this: http://supersmashbros.wikia.com/wiki/Stock_Glitch
+pair<string, string> getMatchup(Mat scene){
+    using namespace boost::filesystem;
+    path dir_path = cwd.string() + "/Resources/icons";
+    
+    directory_iterator it(dir_path), eod;
+    
+    Mat icon;
+    CvSize size;
+    pair<double, Point> matchPoint;
+    double bestMatchVal=999999,otherBestMatchVal=999999;
+    string bestMatchString,otherBestMatchString;
+    
+    BOOST_FOREACH(boost::filesystem::path const &p, std::make_pair(it, eod))
+    {
+        if(is_regular_file(p))
+        {
+            icon = cv::imread(p.string());
+            size = icon.size();
+            if(size.width == 0){//skip rando hidden files
+                continue;
+            }
+            resize(icon,icon,cvSize(size.width * videoScale, size.height * videoScale));
+            matchPoint = *templateMatch(scene, cv::imread(p.string()));
+            
+            if((matchPoint.first > 0) && (matchPoint.first < otherBestMatchVal))
+            {
+                if(matchPoint.first < bestMatchVal)
+                {
+                    bestMatchVal = matchPoint.first;
+                    bestMatchString = p.string();
+                }
+                else
+                {
+                    otherBestMatchVal = matchPoint.first;
+                    otherBestMatchString = p.string();
+                }
+            }
+        }
+    }
+    return pair<string, string>(bestMatchString.substr(bestMatchString.find_last_of("/")+1), otherBestMatchString.substr(otherBestMatchString.find_last_of("/")+1));
+}
 
 /*
 ********ALSO FOR KEYPOINT MATCHING. MAY NEED TO FALL BACK ON THIS SOMEDAY, SO LEAVING IN********
