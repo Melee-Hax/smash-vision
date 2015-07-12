@@ -10,14 +10,14 @@
 	<string>smashProj</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>2A69DCD05EA60FCA151215A29F14C9416A406C55</key>
+		<key>95ADAFC2B79D83F9D13C367D208F480ABA546481</key>
 		<string>https://github.com/MisterSquishy/smash-vision</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>smashProj.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>2A69DCD05EA60FCA151215A29F14C9416A406C55</key>
+		<key>95ADAFC2B79D83F9D13C367D208F480ABA546481</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>2A69DCD05EA60FCA151215A29F14C9416A406C55</string>
+	<string>95ADAFC2B79D83F9D13C367D208F480ABA546481</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2A69DCD05EA60FCA151215A29F14C9416A406C55</string>
+			<string>95ADAFC2B79D83F9D13C367D208F480ABA546481</string>
 			<key>IDESourceControlWCCName</key>
 			<string>smash-vision</string>
 		</dict>
