@@ -9,6 +9,9 @@
 -   frame interval analyzed
 -   character locations (?)
 
+*1.5 data model*
+- Looking into NOSQL options like Wakanda. RDBMS doesn't make nearly as much sense as hierarchical structure
+
 *2. youtube link -> video -> stats -> database*
 -	What do we need from user?
 -		Names of players, date, tournament
