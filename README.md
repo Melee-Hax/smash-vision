@@ -1,12 +1,17 @@
 
 *1. Frame-by-frame analyzer:*
-- Find characters and their animation states
-- Find frame interval analyzed (
-- Write to .csv (maybe local array and write off at the end?)
+- Tournament-level data: Probably need from user, maybe exisitng DBs
+- Match-level data: players, anything else?
+- Game-level data: stage, characters, tags(?), etc
+- Frame-level data:
+-   characters and their animation states
+-   damage, stocks, other state things
+-   frame interval analyzed
+-   character locations (?)
 
-*2. UI, youtube link -> video -> stats -> database*
+*2. youtube link -> video -> stats -> database*
 -	What do we need from user?
--		Names of players, date, tournament (round?)
+-		Names of players, date, tournament
 -	How do we validate this data before putting it in the database?
 
 *3. Derived tables*
@@ -38,4 +43,4 @@
 -	Fast inputs (worst case: 7 game frames btw youtube frames)
 
 *Progress:*
--   Working on basic object detection, identifying pikachu and fox in game starting positions
+-   Working on basic object recognition, identifying pikachu and fox in game starting positions
